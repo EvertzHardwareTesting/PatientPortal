@@ -1,0 +1,3 @@
+*** Variables ***
+&{Appointment Details}    Specialization=Anesthesiology    Doctor Name=Dr. Shweta Bhandari (M.D.)    DaysToAdd=0    Time=10:00 AM
+&{ReportDetails}    Subject=Test Subject    Comment=Test Comment

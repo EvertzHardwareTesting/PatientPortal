@@ -1,0 +1,72 @@
+*** Settings ***
+Suite Setup       Open Browser and Maximize Window
+Suite Teardown    Browser Close    #
+Test Setup        Login
+Test Teardown     Logout    #
+Metadata          Version    1.0
+Metadata          Executed At    %{COMPUTERNAME}
+Metadata          Test User    %{USERNAME}
+Metadata          Operating System    %{OS}
+Metadata          Processor    %{PROCESSOR_LEVEL}
+Resource          Reusables.txt
+Resource          TestData.txt
+
+*** Test Cases ***
+ReportProblem
+    [Tags]    Regression
+    Click Element    ${ReportProblemLinkField Link}
+    ${sub}=    Evaluate    ${ReportDetails}.get('Subject')
+    Input Text    ${SubjectTextField Id}    ${sub}
+    ${comment}=    Evaluate    ${ReportDetails}.get('Comment')
+    Input Text    ${CommentTextField Id}    ${comment}
+    Click Element    ${ReportSubmitButton Xpath}
+    Page Should Contain    Message sent successfully.
+    Log    Message Displayed
+    Set Test Message    Message Displayed
+
+CreatePatientAppointment
+    [Tags]    Smoke
+    Wait Until Element Is Visible    ${PatientAppointmentLinkField LinkText}    ${DefaultWait}
+    Click Element    ${PatientAppointmentLinkField LinkText}
+    Wait Until Element Is Visible    ${PageHeaderLabelField Xpath}    ${DefaultWait}
+    Wait Until Element Is Visible    ${AddNewAppointmentLinkField LinkText}    ${DefaultWait}
+    Click Element    ${AddNewAppointmentLinkField LinkText}
+    Wait Until Element Is Visible    ${RequestNewAppointmentabelField Id}    ${DefaultWait}
+    ${clinic_names}=    Get List Items    ${ClinicNamesDDLField Id}
+    ${random_index_str}=    GetRandomIndexFromList    ${clinic_names}
+    Select From List By Index    ${ClinicNamesDDLField Id}    ${random_index_str}
+    ${spec}=    Evaluate    ${Appointment Details}.get('Specialization')
+    Select From List    ${SpecializationDDLField ID}    ${spec}
+    Sleep    1s
+    ${doc}=    Evaluate    ${Appointment Details}.get('Doctor Name')
+    Select From List    ${DoctorNameDDLField Id}    ${doc}
+    ${add_days}=    Evaluate    ${Appointment Details}.get('DaysToAdd')
+    ${apt_date}=    GetDaysAddToCurrentDateInDict    ${add_days}
+    ${month_year}=    Evaluate    ${apt_date}['Month']+" "+${apt_date}['Year']
+    ${day}=    Evaluate    ${apt_date}['Day']
+    Click Element    ${AppointmentDateTextField Name}
+    ${cal_title}=    Get Text    xpath=//div[@class='ui-datepicker-title']
+    sleep    2s
+    Run Keyword If    '${cal_title}'=='${month_year}'    Click Element    xpath=//table[@class='ui-datepicker-calendar']//a[text()='${day}']
+    ${time}=    Evaluate    ${Appointment Details}.get('Time')
+    Log    ${time}
+    Click Element    ${AppointmentTimeTextField Name}
+    sleep    2s
+    Click Element    link=${time}
+    ${rand_str}=    GenerateRandomString    6
+    Input Text    ${VisitReasonTextArea Name}    ${rand_str}
+    Click Element    ${AppointmentSubmitButton Id}
+    ${date}=    Evaluate    '${day} ${month_year} ${time}'
+    ${dtComp}=    IsDateGreaterThanCurrentDate    ${date}
+    ${status1}    ${value1}=    Run Keyword And Ignore Error    Element Should Contain    ${AppointmentSuccessDialog Xpath}    Appointment Success
+    ${status2}    ${value2}=    Run Keyword And Ignore Error    Element Should Not Contain    ${AppointmentSuccessDialog Xpath}    Appointment Success
+    Run Keyword If    ${dtComp} and '${status1}' == 'PASS' and '${status2}' == 'FAIL'    Log    Success    ELSE IF !${dtComp} and '${status1}' == 'FAIL' and '${status2}' == 'PASS'    Log    Success
+    ...    ELSE    Log    Failure
+    Click Element    ${DialogOK Xpath}
+    Log    ${dtComp}
+    Log    ${status1}
+    Log    ${status2}
+    Run Keyword If    ${dtComp} and '${status1}' == 'PASS' and '${status2}' == 'FAIL'    Log    Appointment Created    ELSE IF !${dtComp} and '${status1}' == 'FAIL' and '${status2}' == 'PASS'    Log    Appointment not created
+    ...    ELSE    Pass    Appointment should not create but created
+
+*** Keywords ***

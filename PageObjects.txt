@@ -1,0 +1,22 @@
+*** Variables ***
+${LoginUserNameTextField Id}    id=Login_UserName    # Login User Name Text Field Locator
+${LoginPasswordTextField Id}    id=Login_Password    # Login Password Text Field Locator
+${LoginSubmitButtonField Id}    id=login    # Login Submit Button Field Locator
+${LogoutLinkField LinkText}    link=Sign Out
+${PatientAppointmentLinkField LinkText}    link=Patient Appointments
+${PageHeaderLabelField Xpath}    xpath=//h2[@class='pageHeader']
+${AddNewAppointmentLinkField LinkText}    link=Add New Appointment
+${RequestNewAppointmentabelField Id}    id=header
+${ClinicNamesDDLField Id}    id=drpClinic
+${SpecializationDDLField ID}    id=drpSpecialization
+${DoctorNameDDLField Id}    id=drpDoctor
+${AppointmentDateTextField Name}    name=AppointmentDate
+${AppointmentTimeTextField Name}    xpath=//div[@class='form-horizontal']//input[@id='txtAppointmentTime' and @name='AppointmentStartTime']
+${VisitReasonTextArea Name}    name=ReasonForVisit
+${AppointmentSubmitButton Id}    id=btnAddAppointment
+${AppointmentSuccessDialog Xpath}    xpath=//span[@class='ui-dialog-title']
+${DialogOK Xpath}    xpath=//span[@class='ui-button-text' and text()='Ok']
+${ReportProblemLinkField Link}    link=Report Problem
+${SubjectTextField Id}    id=Subject
+${CommentTextField Id}    id=Comments
+${ReportSubmitButton Xpath}    xpath=//input[@value='Submit']

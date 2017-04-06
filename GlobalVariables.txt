@@ -1,0 +1,6 @@
+*** Variables ***
+${BROWSER}        Chrome
+${URL}            http://10.10.2.40:8081/PatientPortal/
+${Username}       aman7bitm
+${Password}       amanjha02@
+${DefaultWait}    30s

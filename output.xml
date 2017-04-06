@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20170308 17:50:39.850" generator="Robot 3.0 (Python 2.7.12 on win32)">
+<suite source="D:\Python\RobotProject\PatientPortal\PatientPortalSuite.txt" id="s1" name="PatientPortalSuite">
+<kw type="setup" name="Open Browser and Maximize Window" library="Reusables">
+<kw name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:40.240" level="INFO">Opening browser 'Chrome' to base url 'http://10.10.2.40:8081/PatientPortal/'</msg>
+<status status="PASS" endtime="20170308 17:50:44.382" starttime="20170308 17:50:40.240"></status>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" endtime="20170308 17:50:45.809" starttime="20170308 17:50:44.382"></status>
+</kw>
+<status status="PASS" endtime="20170308 17:50:45.809" starttime="20170308 17:50:40.240"></status>
+</kw>
+<test id="s1-t1" name="CreatePatientAppointment">
+<kw type="setup" name="Login" library="Reusables">
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${LoginUserNameTextField Id}</arg>
+<arg>${Username}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:45.809" level="INFO">Typing text 'aman7bitm' into text field 'id=Login_UserName'</msg>
+<status status="PASS" endtime="20170308 17:50:45.947" starttime="20170308 17:50:45.809"></status>
+</kw>
+<kw name="Input Password" library="Selenium2Library">
+<doc>Types the given password into text field identified by `locator`.</doc>
+<arguments>
+<arg>${LoginPasswordTextField Id}</arg>
+<arg>${Password}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:45.948" level="INFO">Typing password into text field 'id=Login_Password'</msg>
+<status status="PASS" endtime="20170308 17:50:46.050" starttime="20170308 17:50:45.947"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${LoginSubmitButtonField Id}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:46.050" level="INFO">Clicking element 'id=login'.</msg>
+<status status="PASS" endtime="20170308 17:50:47.251" starttime="20170308 17:50:46.050"></status>
+</kw>
+<status status="PASS" endtime="20170308 17:50:47.252" starttime="20170308 17:50:45.809"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${PatientAppointmentLinkField LinkText}</arg>
+<arg>${DefaultWait}</arg>
+</arguments>
+<status status="PASS" endtime="20170308 17:50:47.297" starttime="20170308 17:50:47.252"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${PatientAppointmentLinkField LinkText}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:47.298" level="INFO">Clicking element 'link=Patient Appointments'.</msg>
+<status status="PASS" endtime="20170308 17:50:47.800" starttime="20170308 17:50:47.297"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${PageHeaderLabelField Xpath}</arg>
+<arg>${DefaultWait}</arg>
+</arguments>
+<status status="PASS" endtime="20170308 17:50:47.829" starttime="20170308 17:50:47.801"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${AddNewAppointmentLinkField LinkText}</arg>
+<arg>${DefaultWait}</arg>
+</arguments>
+<status status="PASS" endtime="20170308 17:50:47.860" starttime="20170308 17:50:47.829"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${AddNewAppointmentLinkField LinkText}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:47.860" level="INFO">Clicking element 'link=Add New Appointment'.</msg>
+<status status="PASS" endtime="20170308 17:50:50.175" starttime="20170308 17:50:47.860"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${RequestNewAppointmentabelField Id}</arg>
+<arg>${DefaultWait}</arg>
+</arguments>
+<status status="PASS" endtime="20170308 17:50:50.206" starttime="20170308 17:50:50.176"></status>
+</kw>
+<kw name="Get List Items" library="Selenium2Library">
+<doc>Returns the values in the select list identified by `locator`.</doc>
+<arguments>
+<arg>${ClinicNamesDDLField Id}</arg>
+</arguments>
+<assign>
+<var>${clinic_names}</var>
+</assign>
+<msg timestamp="20170308 17:50:50.369" level="INFO">${clinic_names} = [u'-Select-', u'ABC', u'Endocrine Associates', u'General Medicine Clinic', u'Patient Portal', u'QCMG Clinic test', u'QCMG Test Clinic', u'testser']</msg>
+<status status="PASS" endtime="20170308 17:50:50.369" starttime="20170308 17:50:50.207"></status>
+</kw>
+<kw name="Get Random Index From List" library="UtilLibrary">
+<arguments>
+<arg>${clinic_names}</arg>
+</arguments>
+<assign>
+<var>${random_index_str}</var>
+</assign>
+<msg timestamp="20170308 17:50:50.369" level="INFO">${random_index_str} = 6</msg>
+<status status="PASS" endtime="20170308 17:50:50.369" starttime="20170308 17:50:50.369"></status>
+</kw>
+<kw name="Select From List By Index" library="Selenium2Library">
+<doc>Selects `*indexes` from list identified by `locator`</doc>
+<arguments>
+<arg>${ClinicNamesDDLField Id}</arg>
+<arg>${random_index_str}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:50.369" level="INFO">Selecting index(es) '6' from list 'id=drpClinic'.</msg>
+<status status="PASS" endtime="20170308 17:50:50.500" starttime="20170308 17:50:50.369"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${Appointment Details}.get('Specialization')</arg>
+</arguments>
+<assign>
+<var>${spec}</var>
+</assign>
+<msg timestamp="20170308 17:50:50.502" level="INFO">${spec} = Anesthesiology</msg>
+<status status="PASS" endtime="20170308 17:50:50.502" starttime="20170308 17:50:50.500"></status>
+</kw>
+<kw name="Select From List" library="Selenium2Library">
+<doc>Selects `*items` from list identified by `locator`</doc>
+<arguments>
+<arg>${SpecializationDDLField ID}</arg>
+<arg>${spec}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:50.503" level="INFO">Selecting option(s) 'Anesthesiology' from list 'id=drpSpecialization'.</msg>
+<status status="PASS" endtime="20170308 17:50:50.608" starttime="20170308 17:50:50.502"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>1s</arg>
+</arguments>
+<msg timestamp="20170308 17:50:51.610" level="INFO">Slept 1 second</msg>
+<status status="PASS" endtime="20170308 17:50:51.610" starttime="20170308 17:50:50.608"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${Appointment Details}.get('Doctor Name')</arg>
+</arguments>
+<assign>
+<var>${doc}</var>
+</assign>
+<msg timestamp="20170308 17:50:51.610" level="INFO">${doc} = Dr. Shweta Bhandari (M.D.)</msg>
+<status status="PASS" endtime="20170308 17:50:51.610" starttime="20170308 17:50:51.610"></status>
+</kw>
+<kw name="Select From List" library="Selenium2Library">
+<doc>Selects `*items` from list identified by `locator`</doc>
+<arguments>
+<arg>${DoctorNameDDLField Id}</arg>
+<arg>${doc}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:51.610" level="INFO">Selecting option(s) 'Dr. Shweta Bhandari (M.D.)' from list 'id=drpDoctor'.</msg>
+<status status="PASS" endtime="20170308 17:50:51.735" starttime="20170308 17:50:51.610"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${Appointment Details}.get('DaysToAdd')</arg>
+</arguments>
+<assign>
+<var>${add_days}</var>
+</assign>
+<msg timestamp="20170308 17:50:51.735" level="INFO">${add_days} = 0</msg>
+<status status="PASS" endtime="20170308 17:50:51.735" starttime="20170308 17:50:51.735"></status>
+</kw>
+<kw name="Get Days Add To Current Date In Dict" library="UtilLibrary">
+<arguments>
+<arg>${add_days}</arg>
+</arguments>
+<assign>
+<var>${apt_date}</var>
+</assign>
+<msg timestamp="20170308 17:50:51.735" level="INFO">${apt_date} = {'Year': '2017', 'Day': 8, 'Month': 'March'}</msg>
+<status status="PASS" endtime="20170308 17:50:51.735" starttime="20170308 17:50:51.735"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${apt_date}['Month']+" "+${apt_date}['Year']</arg>
+</arguments>
+<assign>
+<var>${month_year}</var>
+</assign>
+<msg timestamp="20170308 17:50:51.735" level="INFO">${month_year} = March 2017</msg>
+<status status="PASS" endtime="20170308 17:50:51.735" starttime="20170308 17:50:51.735"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${apt_date}['Day']</arg>
+</arguments>
+<assign>
+<var>${day}</var>
+</assign>
+<msg timestamp="20170308 17:50:51.735" level="INFO">${day} = 8</msg>
+<status status="PASS" endtime="20170308 17:50:51.735" starttime="20170308 17:50:51.735"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${AppointmentDateTextField Name}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:51.735" level="INFO">Clicking element 'name=AppointmentDate'.</msg>
+<status status="PASS" endtime="20170308 17:50:51.823" starttime="20170308 17:50:51.735"></status>
+</kw>
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of element identified by `locator`.</doc>
+<arguments>
+<arg>xpath=//div[@class='ui-datepicker-title']</arg>
+</arguments>
+<assign>
+<var>${cal_title}</var>
+</assign>
+<msg timestamp="20170308 17:50:51.869" level="INFO">${cal_title} = March 2017</msg>
+<status status="PASS" endtime="20170308 17:50:51.869" starttime="20170308 17:50:51.823"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2s</arg>
+</arguments>
+<msg timestamp="20170308 17:50:53.879" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20170308 17:50:53.879" starttime="20170308 17:50:51.869"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${cal_title}'=='${month_year}'</arg>
+<arg>Click Element</arg>
+<arg>xpath=//table[@class='ui-datepicker-calendar']//a[text()='${day}']</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>xpath=//table[@class='ui-datepicker-calendar']//a[text()='${day}']</arg>
+</arguments>
+<msg timestamp="20170308 17:50:53.879" level="INFO">Clicking element 'xpath=//table[@class='ui-datepicker-calendar']//a[text()='8']'.</msg>
+<status status="PASS" endtime="20170308 17:50:53.957" starttime="20170308 17:50:53.879"></status>
+</kw>
+<status status="PASS" endtime="20170308 17:50:53.957" starttime="20170308 17:50:53.879"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${Appointment Details}.get('Time')</arg>
+</arguments>
+<assign>
+<var>${time}</var>
+</assign>
+<msg timestamp="20170308 17:50:53.957" level="INFO">${time} = 10:00 AM</msg>
+<status status="PASS" endtime="20170308 17:50:53.957" starttime="20170308 17:50:53.957"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${time}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:53.957" level="INFO">10:00 AM</msg>
+<status status="PASS" endtime="20170308 17:50:53.957" starttime="20170308 17:50:53.957"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${AppointmentTimeTextField Name}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:53.957" level="INFO">Clicking element 'xpath=//div[@class='form-horizontal']//input[@id='txtAppointmentTime' and @name='AppointmentStartTime']'.</msg>
+<status status="PASS" endtime="20170308 17:50:54.039" starttime="20170308 17:50:53.957"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2s</arg>
+</arguments>
+<msg timestamp="20170308 17:50:56.054" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20170308 17:50:56.054" starttime="20170308 17:50:54.040"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>link=${time}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:56.054" level="INFO">Clicking element 'link=10:00 AM'.</msg>
+<status status="PASS" endtime="20170308 17:50:56.132" starttime="20170308 17:50:56.054"></status>
+</kw>
+<kw name="Generate Random String" library="UtilLibrary">
+<arguments>
+<arg>6</arg>
+</arguments>
+<assign>
+<var>${rand_str}</var>
+</assign>
+<msg timestamp="20170308 17:50:56.132" level="INFO">${rand_str} = rcpxpk</msg>
+<status status="PASS" endtime="20170308 17:50:56.132" starttime="20170308 17:50:56.132"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${VisitReasonTextArea Name}</arg>
+<arg>${rand_str}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:56.132" level="INFO">Typing text 'rcpxpk' into text field 'name=ReasonForVisit'</msg>
+<status status="PASS" endtime="20170308 17:50:56.239" starttime="20170308 17:50:56.132"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${AppointmentSubmitButton Id}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:56.240" level="INFO">Clicking element 'id=btnAddAppointment'.</msg>
+<status status="PASS" endtime="20170308 17:50:57.969" starttime="20170308 17:50:56.239"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>'${day} ${month_year} ${time}'</arg>
+</arguments>
+<assign>
+<var>${date}</var>
+</assign>
+<msg timestamp="20170308 17:50:57.971" level="INFO">${date} = 8 March 2017 10:00 AM</msg>
+<status status="PASS" endtime="20170308 17:50:57.971" starttime="20170308 17:50:57.970"></status>
+</kw>
+<kw name="Is Date Greater Than Current Date" library="UtilLibrary">
+<arguments>
+<arg>${date}</arg>
+</arguments>
+<assign>
+<var>${dtComp}</var>
+</assign>
+<msg timestamp="20170308 17:50:57.976" level="INFO">${dtComp} = False</msg>
+<status status="PASS" endtime="20170308 17:50:57.976" starttime="20170308 17:50:57.971"></status>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Element Should Contain</arg>
+<arg>${AppointmentSuccessDialog Xpath}</arg>
+<arg>Appointment Success</arg>
+</arguments>
+<assign>
+<var>${status1}</var>
+<var>${value1}</var>
+</assign>
+<kw name="Element Should Contain" library="Selenium2Library">
+<doc>Verifies element identified by `locator` contains text `expected`.</doc>
+<arguments>
+<arg>${AppointmentSuccessDialog Xpath}</arg>
+<arg>Appointment Success</arg>
+</arguments>
+<msg timestamp="20170308 17:50:57.976" level="INFO">Verifying element 'xpath=//span[@class='ui-dialog-title']' contains text 'Appointment Success'.</msg>
+<status status="PASS" endtime="20170308 17:50:58.009" starttime="20170308 17:50:57.976"></status>
+</kw>
+<msg timestamp="20170308 17:50:58.009" level="INFO">${status1} = PASS</msg>
+<msg timestamp="20170308 17:50:58.009" level="INFO">${value1} = None</msg>
+<status status="PASS" endtime="20170308 17:50:58.009" starttime="20170308 17:50:57.976"></status>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Element Should Not Contain</arg>
+<arg>${AppointmentSuccessDialog Xpath}</arg>
+<arg>Appointment Success</arg>
+</arguments>
+<assign>
+<var>${status2}</var>
+<var>${value2}</var>
+</assign>
+<kw name="Element Should Not Contain" library="Selenium2Library">
+<doc>Verifies element identified by `locator` does not contain text `expected`.</doc>
+<arguments>
+<arg>${AppointmentSuccessDialog Xpath}</arg>
+<arg>Appointment Success</arg>
+</arguments>
+<msg timestamp="20170308 17:50:58.010" level="INFO">Verifying element 'xpath=//span[@class='ui-dialog-title']' does not contain text 'Appointment Success'.</msg>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20170308 17:50:58.253" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20170308 17:50:58.253" starttime="20170308 17:50:58.024"></status>
+</kw>
+<msg timestamp="20170308 17:50:58.253" level="FAIL">Element 'xpath=//span[@class='ui-dialog-title']' should not contain text 'Appointment Success' but it did.</msg>
+<status status="FAIL" endtime="20170308 17:50:58.253" starttime="20170308 17:50:58.010"></status>
+</kw>
+<msg timestamp="20170308 17:50:58.253" level="INFO">${status2} = FAIL</msg>
+<msg timestamp="20170308 17:50:58.253" level="INFO">${value2} = Element 'xpath=//span[@class='ui-dialog-title']' should not contain text 'Appointment Success' but it did.</msg>
+<status status="PASS" endtime="20170308 17:50:58.253" starttime="20170308 17:50:58.009"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${dtComp} and '${status1}' == 'PASS' and '${status2}' == 'FAIL'</arg>
+<arg>Log</arg>
+<arg>Success</arg>
+<arg>ELSE IF !${dtComp} and '${status1}' == 'FAIL' and '${status2}' == 'PASS'</arg>
+<arg>Log</arg>
+<arg>Success</arg>
+<arg>ELSE</arg>
+<arg>Log</arg>
+<arg>Failure</arg>
+</arguments>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Failure</arg>
+</arguments>
+<msg timestamp="20170308 17:50:58.253" level="INFO">Failure</msg>
+<status status="PASS" endtime="20170308 17:50:58.253" starttime="20170308 17:50:58.253"></status>
+</kw>
+<status status="PASS" endtime="20170308 17:50:58.253" starttime="20170308 17:50:58.253"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${DialogOK Xpath}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:58.253" level="INFO">Clicking element 'xpath=//span[@class='ui-button-text' and text()='Ok']'.</msg>
+<status status="PASS" endtime="20170308 17:50:59.104" starttime="20170308 17:50:58.253"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${dtComp}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:59.105" level="INFO">False</msg>
+<status status="PASS" endtime="20170308 17:50:59.105" starttime="20170308 17:50:59.104"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${status1}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:59.105" level="INFO">PASS</msg>
+<status status="PASS" endtime="20170308 17:50:59.105" starttime="20170308 17:50:59.105"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${status2}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:59.106" level="INFO">FAIL</msg>
+<status status="PASS" endtime="20170308 17:50:59.106" starttime="20170308 17:50:59.105"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${dtComp} and '${status1}' == 'PASS' and '${status2}' == 'FAIL'</arg>
+<arg>Log</arg>
+<arg>Appointment Created</arg>
+<arg>ELSE IF !${dtComp} and '${status1}' == 'FAIL' and '${status2}' == 'PASS'</arg>
+<arg>Log</arg>
+<arg>Appointment not created</arg>
+<arg>ELSE</arg>
+<arg>Fail</arg>
+<arg>Appointment should not create but created</arg>
+</arguments>
+<kw name="Fail" library="BuiltIn">
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<arguments>
+<arg>Appointment should not create but created</arg>
+</arguments>
+<msg timestamp="20170308 17:50:59.108" level="FAIL">Appointment should not create but created</msg>
+<status status="FAIL" endtime="20170308 17:50:59.108" starttime="20170308 17:50:59.108"></status>
+</kw>
+<status status="FAIL" endtime="20170308 17:50:59.108" starttime="20170308 17:50:59.106"></status>
+</kw>
+<kw type="teardown" name="Logout" library="Reusables">
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${LogoutLinkField LinkText}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:59.109" level="INFO">Clicking element 'link=Sign Out'.</msg>
+<status status="PASS" endtime="20170308 17:50:59.518" starttime="20170308 17:50:59.109"></status>
+</kw>
+<status status="PASS" endtime="20170308 17:50:59.518" starttime="20170308 17:50:59.108"></status>
+</kw>
+<tags>
+<tag>Smoke</tag>
+</tags>
+<status status="FAIL" endtime="20170308 17:50:59.518" critical="yes" starttime="20170308 17:50:45.809">Appointment should not create but created</status>
+</test>
+<test id="s1-t2" name="ReportProblem">
+<kw type="setup" name="Login" library="Reusables">
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${LoginUserNameTextField Id}</arg>
+<arg>${Username}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:59.520" level="INFO">Typing text 'aman7bitm' into text field 'id=Login_UserName'</msg>
+<status status="PASS" endtime="20170308 17:50:59.588" starttime="20170308 17:50:59.520"></status>
+</kw>
+<kw name="Input Password" library="Selenium2Library">
+<doc>Types the given password into text field identified by `locator`.</doc>
+<arguments>
+<arg>${LoginPasswordTextField Id}</arg>
+<arg>${Password}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:59.588" level="INFO">Typing password into text field 'id=Login_Password'</msg>
+<status status="PASS" endtime="20170308 17:50:59.662" starttime="20170308 17:50:59.588"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${LoginSubmitButtonField Id}</arg>
+</arguments>
+<msg timestamp="20170308 17:50:59.662" level="INFO">Clicking element 'id=login'.</msg>
+<status status="PASS" endtime="20170308 17:51:01.289" starttime="20170308 17:50:59.662"></status>
+</kw>
+<status status="PASS" endtime="20170308 17:51:01.289" starttime="20170308 17:50:59.519"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${ReportProblemLinkField Link}</arg>
+</arguments>
+<msg timestamp="20170308 17:51:01.289" level="INFO">Clicking element 'link=Report Problem'.</msg>
+<status status="PASS" endtime="20170308 17:51:01.624" starttime="20170308 17:51:01.289"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${ReportDetails}.get('Subject')</arg>
+</arguments>
+<assign>
+<var>${sub}</var>
+</assign>
+<msg timestamp="20170308 17:51:01.626" level="INFO">${sub} = Test Subject</msg>
+<status status="PASS" endtime="20170308 17:51:01.626" starttime="20170308 17:51:01.624"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${SubjectTextField Id}</arg>
+<arg>${sub}</arg>
+</arguments>
+<msg timestamp="20170308 17:51:01.627" level="INFO">Typing text 'Test Subject' into text field 'id=Subject'</msg>
+<status status="PASS" endtime="20170308 17:51:01.703" starttime="20170308 17:51:01.626"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${ReportDetails}.get('Comment')</arg>
+</arguments>
+<assign>
+<var>${comment}</var>
+</assign>
+<msg timestamp="20170308 17:51:01.705" level="INFO">${comment} = Test Comment</msg>
+<status status="PASS" endtime="20170308 17:51:01.705" starttime="20170308 17:51:01.703"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${CommentTextField Id}</arg>
+<arg>${comment}</arg>
+</arguments>
+<msg timestamp="20170308 17:51:01.706" level="INFO">Typing text 'Test Comment' into text field 'id=Comments'</msg>
+<status status="PASS" endtime="20170308 17:51:01.792" starttime="20170308 17:51:01.705"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${ReportSubmitButton Xpath}</arg>
+</arguments>
+<msg timestamp="20170308 17:51:01.792" level="INFO">Clicking element 'xpath=//input[@value='Submit']'.</msg>
+<status status="PASS" endtime="20170308 17:51:05.178" starttime="20170308 17:51:01.792"></status>
+</kw>
+<kw name="Page Should Contain" library="Selenium2Library">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>Message sent successfully.</arg>
+</arguments>
+<msg timestamp="20170308 17:51:05.198" level="INFO">Current page contains text 'Message sent successfully.'.</msg>
+<status status="PASS" endtime="20170308 17:51:05.199" starttime="20170308 17:51:05.179"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Message Displayed</arg>
+</arguments>
+<msg timestamp="20170308 17:51:05.199" level="INFO">Message Displayed</msg>
+<status status="PASS" endtime="20170308 17:51:05.199" starttime="20170308 17:51:05.199"></status>
+</kw>
+<kw name="Set Test Message" library="BuiltIn">
+<doc>Sets message for the current test case.</doc>
+<arguments>
+<arg>Message Displayed</arg>
+</arguments>
+<msg timestamp="20170308 17:51:05.199" level="INFO">Set test message to:
+Message Displayed</msg>
+<status status="PASS" endtime="20170308 17:51:05.199" starttime="20170308 17:51:05.199"></status>
+</kw>
+<kw type="teardown" name="Logout" library="Reusables">
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${LogoutLinkField LinkText}</arg>
+</arguments>
+<msg timestamp="20170308 17:51:05.200" level="INFO">Clicking element 'link=Sign Out'.</msg>
+<status status="PASS" endtime="20170308 17:51:05.535" starttime="20170308 17:51:05.200"></status>
+</kw>
+<status status="PASS" endtime="20170308 17:51:05.535" starttime="20170308 17:51:05.200"></status>
+</kw>
+<tags>
+<tag>Regression</tag>
+</tags>
+<status status="PASS" endtime="20170308 17:51:05.535" critical="yes" starttime="20170308 17:50:59.519">Message Displayed</status>
+</test>
+<kw type="teardown" name="Browser Close" library="Reusables">
+<kw name="Close Browser" library="Selenium2Library">
+<doc>Closes the current browser.</doc>
+<status status="PASS" endtime="20170308 17:51:08.626" starttime="20170308 17:51:05.536"></status>
+</kw>
+<status status="PASS" endtime="20170308 17:51:08.626" starttime="20170308 17:51:05.536"></status>
+</kw>
+<metadata>
+<item name="Executed At">YH1005418DT</item>
+<item name="Operating System">Windows_NT</item>
+<item name="Processor">6</item>
+<item name="Test User">durgavenkateswara.y</item>
+<item name="Version">1.0</item>
+</metadata>
+<status status="FAIL" endtime="20170308 17:51:08.626" starttime="20170308 17:50:39.865"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="1" pass="1">Critical Tests</stat>
+<stat fail="1" pass="1">All Tests</stat>
+</total>
+<tag>
+<stat fail="0" pass="1">Regression</stat>
+<stat fail="1" pass="0">Smoke</stat>
+</tag>
+<suite>
+<stat fail="1" id="s1" name="PatientPortalSuite" pass="1">PatientPortalSuite</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
